@@ -5,7 +5,7 @@ import json
 class YukiPersonality:
     def __init__(self):
         self.api_url = "https://api.groq.com/openai/v1/chat/completions"
-        self.api_key = os.getenv("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")
+        self.api_key = os.getenv("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")
         self.model = "llama3-8b-8192"
 
     def generate_ai_response_stream(self, text):
