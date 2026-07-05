@@ -1,26 +1,24 @@
 import os
 import asyncio
 from aiogram import Bot, Dispatcher
+from yuki_personality import YukiPersonality
 
-# Вставь свой рабочий токен прямо СЮДА в кавычки для проверки
-# БЕЗ пробелов и лишних символов
-TOKEN = "8841854984:AAFBmLwKsdgs-Z5N5s5cbU3SBPRCDjHe2mU" 
+# Читаем переменные из окружения
+TOKEN = os.getenv("TOKEN")
+GROQ_API_KEY = os.getenv("8841854984:AAFBmLwKsdgs-Z5N5s5cbU3SBPRCDjHe2mU")
+
+# Проверка, что переменные вообще есть
+if not TOKEN or not GROQ_API_KEY:
+    raise ValueError("Ошибка: TOKEN или GROQ_API_KEY не заданы в настройках!")
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
-
-# ... (остальной код бота)
+yuki = YukiPersonality()
 
 async def main():
-    if not TOKEN:
-        print("Ошибка: Токен пустой!")
-        return
-    
-    bot = Bot(token=TOKEN)
-    dp = Dispatcher()
-    
-    print("Запуск polling...")
+    # Очистка очереди обновлений, чтобы бот не «давился» старыми сообщениями
     await bot.delete_webhook(drop_pending_updates=True)
+    print("Юки проснулась и готова к работе...")
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
