@@ -32,7 +32,9 @@ async def chat_handler(message: types.Message):
     await bot.edit_message_text(full_reply, chat_id=message.chat.id, message_id=msg.message_id)
 
 async def main():
+    # Удаляем старые вебхуки, если они были, и сбрасываем Pending Updates
+    await bot.delete_webhook(drop_pending_updates=True)
+    print("Старые сессии сброшены, запуск...")
     await dp.start_polling(bot)
-
 if __name__ == "__main__":
     asyncio.run(main())
