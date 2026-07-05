@@ -9,8 +9,8 @@ from yuki_personality import YukiPersonality
 logging.basicConfig(level=logging.INFO)
 
 # 2. Получение переменных окружения
-TOKEN = os.getenv("8841854984:AAFBmLwKsdgs-Z5N5s5cbU3SBPRCDjHe2mU")
-GROQ_API_KEY = os.getenv("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")
+TOKEN = os.getenv("TOKEN")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 # Проверка, чтобы бот сразу сказал, чего ему не хватает
 if not TOKEN:
