@@ -2,8 +2,14 @@ import os
 import asyncio
 from aiogram import Bot, Dispatcher
 
-# Получаем токен из переменных Render
-TOKEN = os.getenv("8841854984:AAFBmLwKsdgs-Z5N5s5cbU3SBPRCDjHe2mU")
+# Вставь свой рабочий токен прямо СЮДА в кавычки для проверки
+# БЕЗ пробелов и лишних символов
+TOKEN = "8841854984:AAFBmLwKsdgs-Z5N5s5cbU3SBPRCDjHe2mU" 
+
+bot = Bot(token=TOKEN)
+dp = Dispatcher()
+
+# ... (остальной код бота)
 
 async def main():
     if not TOKEN:
