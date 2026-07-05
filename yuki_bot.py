@@ -9,9 +9,15 @@ from yuki_personality import YukiPersonality
 logging.basicConfig(level=logging.INFO)
 
 TOKEN = os.getenv("8841854984:AAFBmLwKsdgs-Z5N5s5cbU3SBPRCDjHe2mU")
+
+# Добавь этот блок для отладки
+if TOKEN is None:
+    print("КРИТИЧЕСКАЯ ОШИБКА: Переменная окружения 'TOKEN' не найдена!")
+    exit(1) # Завершаем программу, чтобы не было ошибки Aiogram
+else:
+    print(f"Токен успешно считан, длина: {len(TOKEN)}")
+
 bot = Bot(token=TOKEN)
-dp = Dispatcher()
-yuki = YukiPersonality()
 
 # Обработчик команды /start
 @dp.message(Command("start"))
