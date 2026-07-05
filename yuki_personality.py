@@ -3,13 +3,13 @@ import requests
 import json
 
 class YukiPersonality:
-    def __init__(self, memory_file="yuki_memory_tg.json"):
-        # Используем только облачный API
+    def __init__(self):
         self.api_url = "https://api.groq.com/openai/v1/chat/completions"
         self.api_key = os.getenv("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")
         self.model = "llama3-8b-8192"
 
     def generate_ai_response_stream(self, text):
+        # Характер Юки
         system_prompt = (
             "Ты — Юки, мой личный ИИ-ассистент. "
             "Твой стиль: спокойный, элегантный, немного загадочный. "
@@ -35,6 +35,11 @@ class YukiPersonality:
         
         try:
             response = requests.post(self.api_url, headers=headers, json=payload, stream=True)
+            if response.status_code != 200:
+                yield f"Ошибка доступа к облаку (код {response.status_code})."
+                return
+
+            full_text = ""
             for line in response.iter_lines():
                 if line:
                     line_decoded = line.decode('utf-8').replace('data: ', '')
@@ -42,10 +47,13 @@ class YukiPersonality:
                     try:
                         chunk_data = json.loads(line_decoded)
                         content = chunk_data['choices'][0]['delta'].get('content', '')
-                        if content: yield content
+                        if content:
+                            full_text += content
+                            yield content
                     except: continue
-        except:
-            yield "Я сейчас задумалась... попробуй позже."
-
-    def autonomous_remember(self, text):
-        pass
+            
+            if not full_text:
+                yield "Юки задумалась и не нашла слов."
+                
+        except Exception as e:
+            yield f"Техническая ошибка: {str(e)}"
