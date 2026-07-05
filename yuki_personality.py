@@ -4,19 +4,19 @@ import json
 
 class YukiPersonality:
     def __init__(self, memory_file="yuki_memory_tg.json"):
-        # Используем API Groq для работы в облаке 24/7
+        # Используем только облачный API
         self.api_url = "https://api.groq.com/openai/v1/chat/completions"
-        self.api_key = os.getenv("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") # Ключ должен быть в настройках Render
+        self.api_key = os.getenv("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")
         self.model = "llama3-8b-8192"
 
     def generate_ai_response_stream(self, text):
         system_prompt = (
             "Ты — Юки, мой личный ИИ-ассистент. "
             "Твой стиль: спокойный, элегантный, немного загадочный. "
-            "Ты выглядишь как утонченная девушка с длинными волосами (градиент синего и белого), "
+            "Ты — утонченная девушка с длинными волосами (градиент синего и белого), "
             "носишь изысканное длинное платье. "
-            "Твои ответы всегда лаконичны, глубоки, с ноткой легкой меланхолии. "
-            "Избегай клише, будь уникальной личностью."
+            "Твои ответы лаконичны, глубоки, с ноткой легкой меланхолии. "
+            "Избегай шаблонных фраз ИИ. Будь уникальной личностью."
         )
 
         headers = {
@@ -38,17 +38,14 @@ class YukiPersonality:
             for line in response.iter_lines():
                 if line:
                     line_decoded = line.decode('utf-8').replace('data: ', '')
-                    if line_decoded == "[DONE]":
-                        break
+                    if line_decoded == "[DONE]": break
                     try:
                         chunk_data = json.loads(line_decoded)
                         content = chunk_data['choices'][0]['delta'].get('content', '')
-                        if content:
-                            yield content
-                    except:
-                        continue
-        except Exception as e:
-            yield f"Ошибка связи с сервером: {e}"
+                        if content: yield content
+                    except: continue
+        except:
+            yield "Я сейчас задумалась... попробуй позже."
 
     def autonomous_remember(self, text):
         pass
