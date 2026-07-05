@@ -21,7 +21,7 @@ async def main():
 @dp.message()
 async def echo(message: types.Message):
     print(f"Получено сообщение: {message.text}") # Это должно появиться в логах Render!
-    await message.answer("Я получила твоё сообщение!"
+    await message.answer("Я получила твоё сообщение!")
 
 if __name__ == "__main__":
     asyncio.run(main())
