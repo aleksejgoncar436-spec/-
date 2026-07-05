@@ -1,5 +1,0 @@
-{
-  "deploy": {
-    "startCommand": "python src/yuki_bot.py"
-  }
-}
