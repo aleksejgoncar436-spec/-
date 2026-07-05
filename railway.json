@@ -1,1 +1,5 @@
-worker: python yuki_bot.py
+{
+  "deploy": {
+    "startCommand": "python yuki_bot.py"
+  }
+}
