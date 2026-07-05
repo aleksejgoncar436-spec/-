@@ -6,7 +6,7 @@ class YukiPersonality:
     def __init__(self, memory_file="yuki_memory_tg.json"):
         # Используем API Groq для работы в облаке 24/7
         self.api_url = "https://api.groq.com/openai/v1/chat/completions"
-        self.api_key = os.getenv("GROQ_API_KEY") # Ключ должен быть в настройках Render
+        self.api_key = os.getenv("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") # Ключ должен быть в настройках Render
         self.model = "llama3-8b-8192"
 
     def generate_ai_response_stream(self, text):
