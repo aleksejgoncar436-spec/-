@@ -6,6 +6,8 @@ from yuki_personality import YukiPersonality
 TOKEN = "8841854984:AAEp_xH6dM-eoeod9BNYZqyfNxkBowZ5wko"
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
+
+# ИСПРАВЛЕННАЯ СТРОКА:
 yuki = YukiPersonality()
 
 @dp.message(Command("start"))
@@ -16,18 +18,14 @@ async def start_cmd(message: types.Message):
 async def chat_handler(message: types.Message):
     if not message.text: return
     
-    # Отправляем первое сообщение
     msg = await message.answer("...")
     full_reply = ""
 
-    # Собираем ответ
     for chunk in yuki.generate_ai_response_stream(message.text):
         full_reply += chunk
-        # Обновляем сообщение для красоты
         if len(full_reply) % 20 == 0:
             await bot.edit_message_text(full_reply, chat_id=message.chat.id, message_id=msg.message_id)
 
-    # Финальная проверка текста
     if not full_reply.strip():
         full_reply = "..."
     
