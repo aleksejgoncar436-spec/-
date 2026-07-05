@@ -3,7 +3,7 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 from yuki_personality import YukiPersonality
 
-TOKEN = "8841854984:AAEtca0oFoPzYE8TkQRdaVJevA5n0izL-XA"
+TOKEN = "8841854984:AAFBmLwKsdgs-Z5N5s5cbU3SBPRCDjHe2mU"
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
 
