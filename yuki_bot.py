@@ -4,6 +4,7 @@ import logging
 from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters import Command
 from yuki_personality import YukiPersonality
+from aiohttp import web
 
 # 1. Настройка логирования (чтобы видеть в Render, что происходит)
 logging.basicConfig(level=logging.INFO)
@@ -21,6 +22,17 @@ GROQ_API_KEY = "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"
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
 yuki = YukiPersonality()
+
+async def handle(request):
+    return web.Response(text="Юки онлайн!")
+
+async def start_web_server():
+    app = web.Application()
+    app.router.add_get('/', handle)
+    runner = web.AppRunner(app)
+    await runner.setup()
+    site = web.TCPSite(runner, '0.0.0.0', 10000)
+    await site.start()
 
 # 3. Обработка команды /start
 @dp.message(Command("start"))
