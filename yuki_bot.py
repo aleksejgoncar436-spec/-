@@ -31,7 +31,8 @@ async def start_web_server():
     app.router.add_get('/', handle)
     runner = web.AppRunner(app)
     await runner.setup()
-    site = web.TCPSite(runner, '0.0.0.0', 10000)
+port = int(os.getenv("PORT", 10000))
+site = web.TCPSite(runner, '0.0.0.0', port)
     await site.start()
 
 # 3. Обработка команды /start
@@ -62,6 +63,9 @@ async def handle_message(message: types.Message):
 
 # 5. Главная функция запуска
 async def main():
+    # ЗАПУСКАЕМ ВЕБ-СЕРВЕР ОБЯЗАТЕЛЬНО
+    await start_web_server()
+    
     await bot.delete_webhook(drop_pending_updates=True)
     print("Юки успешно запущена и слушает сообщения!")
     await dp.start_polling(bot)
