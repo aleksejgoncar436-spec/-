@@ -13,10 +13,9 @@ TOKEN = os.getenv("8841854984:AAFBmLwKsdgs-Z5N5s5cbU3SBPRCDjHe2mU")
 GROQ_API_KEY = os.getenv("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")
 
 # Проверка, чтобы бот сразу сказал, чего ему не хватает
-if not TOKEN:
-    raise ValueError("КРИТИЧЕСКАЯ ОШИБКА: Переменная TOKEN не найдена!")
-if not GROQ_API_KEY:
-    raise ValueError("КРИТИЧЕСКАЯ ОШИБКА: Переменная GROQ_API_KEY не найдена!")
+# ВРЕМЕННО: Вставь свой токен прямо сюда (только для теста!)
+TOKEN = "8841854984:AAFBmLwKsdgs-Z5N5s5cbU3SBPRCDjHe2mU"
+GROQ_API_KEY = "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"
 
 # Инициализация
 bot = Bot(token=TOKEN)
