@@ -1,17 +1,18 @@
 import os
 import asyncio
-import logging
-from aiogram import Bot, Dispatcher, types, F
-from aiogram.filters import Command
-from yuki_personality import YukiPersonality
+from aiogram import Bot, Dispatcher
 from aiohttp import web
 
-# 1. Настройка логирования (чтобы видеть в Render, что происходит)
-logging.basicConfig(level=logging.INFO)
-
-# 2. Получение переменных окружения
+# Получаем токен из окружения
 TOKEN = os.getenv("8841854984:AAF45TH3OUqm9YIk3qvoepT2hIJSWg00BKs")
-GROQ_API_KEY = os.getenv("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")
+
+# ПРОВЕРКА: если токен пустой, бот сразу напишет об этом в логи и остановится
+if not TOKEN:
+    print("КРИТИЧЕСКАЯ ОШИБКА: Переменная TELEGRAM_TOKEN не найдена в Environment!")
+    exit(1)
+
+bot = Bot(token=TOKEN)
+dp = Dispatcher()
 
 # Проверка, чтобы бот сразу сказал, чего ему не хватает
 # ВРЕМЕННО: Вставь свой токен прямо сюда (только для теста!)
