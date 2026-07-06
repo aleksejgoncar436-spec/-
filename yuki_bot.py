@@ -31,8 +31,9 @@ async def start_web_server():
     app.router.add_get('/', handle)
     runner = web.AppRunner(app)
     await runner.setup()
-port = int(os.getenv("PORT", 10000))
-site = web.TCPSite(runner, '0.0.0.0', port)
+    # Убедись, что отступы здесь ровно 4 пробела!
+    port = int(os.getenv("PORT", 10000))
+    site = web.TCPSite(runner, '0.0.0.0', port)
     await site.start()
 
 # 3. Обработка команды /start
