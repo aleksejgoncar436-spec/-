@@ -44,11 +44,10 @@ async def handle_message(message: types.Message):
 
 # 5. Главная функция запуска
 async def main():
-    # Очистка вебхуков — обязательно для решения конфликтов
     await bot.delete_webhook(drop_pending_updates=True)
     print("Юки успешно запущена и слушает сообщения!")
     await dp.start_polling(bot)
 
-# Замени этот блок в конце файла:
 if __name__ == "__main__":
+    # Именно так запускается современный aiogram
     asyncio.run(main())
