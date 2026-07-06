@@ -8,7 +8,7 @@ class YukiPersonality:
         self.api_key = os.getenv("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")
         self.model = "llama3-8b-8192"
 
-    def generate_ai_response_stream(self, text):
+    def generate_ai_response(self, user_input):
         # Характер Юки
         system_prompt = (
             "Ты — Юки, мой личный ИИ-ассистент. "
