@@ -28,7 +28,7 @@ class YukiPersonality:
             "model": self.model,
             "messages": [
                 {"role": "system", "content": system_prompt},
-                {"role": "user", "content": text}
+                {"role": "user", "content": user_input}
             ],
             "stream": True
         }
