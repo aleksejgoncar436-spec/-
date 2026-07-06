@@ -6,7 +6,7 @@ class YukiPersonality:
 def __init__(self):
     self.api_url = "https://api.groq.com/openai/v1/chat/completions"
     # Читаем ТОЛЬКО из окружения, никакой жесткой привязки!
-    self.api_key = os.getenv("GROQ_API_KEY") 
+    self.api_key = os.getenv("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") 
     self.model = "llama3-8b-8192"
 
     def generate_ai_response(self, user_input):
