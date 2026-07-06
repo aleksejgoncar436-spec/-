@@ -30,18 +30,20 @@ async def cmd_start(message: types.Message):
 # 4. Обработка всех текстовых сообщений
 @dp.message(F.text)
 async def handle_message(message: types.Message):
-    await bot.send_chat_action(chat_id=message.chat.id, action="typing")
-    
-    full_response = ""
-    # Мы проходим циклом по генератору и собираем сообщение по кусочкам
-    for chunk in yuki.generate_ai_response(message.text):
-        full_response += chunk
-    
-    await message.answer(full_response)
-        # Генерация ответа через твой класс
-        response = yuki.generate_ai_response(message.text)
+    try:
+        await bot.send_chat_action(chat_id=message.chat.id, action="typing")
         
-        await message.answer(response)
+        full_response = ""
+        # Собираем ответ из генератора
+        for chunk in yuki.generate_ai_response(message.text):
+            full_response += chunk
+        
+        # Если вдруг генератор ничего не вернул
+        if not full_response:
+            full_response = "Юки сейчас немного задумалась..."
+            
+        await message.answer(full_response)
+        
     except Exception as e:
         logging.error(f"Ошибка при генерации ответа: {e}")
         await message.answer("Прости, у меня возникли технические неполадки.")
