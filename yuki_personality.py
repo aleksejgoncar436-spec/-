@@ -25,13 +25,13 @@ class YukiPersonality:
         }
         
         payload = {
-            "model": self.model,
-            "messages": [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_input}
-            ],
-            "stream": True
-        }
+    "model": self.model,
+    "messages": [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": user_input} # Здесь должно быть user_input!
+    ],
+    "stream": True
+}
         
         try:
             response = requests.post(self.api_url, headers=headers, json=payload, stream=True)
