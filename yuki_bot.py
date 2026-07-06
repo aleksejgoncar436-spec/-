@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.INFO)
 
 # 2. Получение переменных окружения
 TOKEN = os.getenv("8841854984:AAFBmLwKsdgs-Z5N5s5cbU3SBPRCDjHe2mU")
-GROQ_API_KEY = os.getenv("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")
+GROQ_API_KEY = os.getenv("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")
 
 # Проверка, чтобы бот сразу сказал, чего ему не хватает
 # ВРЕМЕННО: Вставь свой токен прямо сюда (только для теста!)
