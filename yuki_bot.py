@@ -10,7 +10,7 @@ from aiohttp import web
 logging.basicConfig(level=logging.INFO)
 
 # 2. Получение переменных окружения
-TOKEN = os.getenv("8841854984:AAFBmLwKsdgs-Z5N5s5cbU3SBPRCDjHe2mU")
+TOKEN = os.getenv("8841854984:AAF45TH3OUqm9YIk3qvoepT2hIJSWg00BKs")
 GROQ_API_KEY = os.getenv("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")
 
 # Проверка, чтобы бот сразу сказал, чего ему не хватает
