@@ -64,12 +64,19 @@ async def handle_message(message: types.Message):
 
 # 5. Главная функция запуска
 async def main():
-    # ЗАПУСКАЕМ ВЕБ-СЕРВЕР ОБЯЗАТЕЛЬНО
+    # Принудительно очищаем все старые «хвосты» и вебхуки
+    await bot.delete_webhook(drop_pending_updates=True)
+    
+    # Запускаем веб-сервер для Render
     await start_web_server()
     
-    await bot.delete_webhook(drop_pending_updates=True)
     print("Юки успешно запущена и слушает сообщения!")
-    await dp.start_polling(bot)
+    
+    # Используем start_polling с явным указанием закрытия
+    try:
+        await dp.start_polling(bot, drop_pending_updates=True)
+    finally:
+        await bot.session.close()
 
 if __name__ == "__main__":
     # Именно так запускается современный aiogram
