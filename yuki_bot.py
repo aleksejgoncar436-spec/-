@@ -49,5 +49,6 @@ async def main():
     print("Юки успешно запущена и слушает сообщения!")
     await dp.start_polling(bot)
 
+# Замени этот блок в конце файла:
 if __name__ == "__main__":
-    executor.start_polling(dp)
+    asyncio.run(main())
